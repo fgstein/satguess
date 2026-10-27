@@ -70,7 +70,7 @@ CATEGORIES = [
         "sources": [
             {"where": instance_of("Q159719"), "min_sitelinks": 10},  # power station
             {"where": instance_of("Q12323"), "min_sitelinks": 15},   # dam
-            {"where": instance_of("Q235353"), "min_sitelinks": 5},   # oil refinery
+            {"where": instance_of("Q12353044"), "min_sitelinks": 5}, # oil refinery
         ],
     },
     {
@@ -149,7 +149,7 @@ CATEGORIES = [
             {"where": instance_of("Q45776"), "min_sitelinks": 10},   # fjord
             {"where": instance_of("Q23397"), "min_sitelinks": 40},   # lake
             {"where": instance_of("Q35666"), "min_sitelinks": 15},   # glacier
-            {"where": instance_of("Q1415287"), "min_sitelinks": 5},  # salt pan
+            {"where": instance_of("Q935277", "Q3497768"), "min_sitelinks": 5},  # salt pan, dry lake
         ],
     },
 ]
