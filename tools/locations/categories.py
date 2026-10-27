@@ -19,8 +19,11 @@ COORD_DEFAULT = "?item wdt:P625 ?coord ."
 def instance_of(*qids, subclasses=True):
     """Fragment « ?item est une instance de l'une de ces classes »."""
     values = " ".join(f"wd:{q}" for q in qids)
-    path = "wdt:P31/wdt:P279*" if subclasses else "wdt:P31"
-    return f"VALUES ?cls {{ {values} }} ?item {path} ?cls ."
+    if not subclasses:
+        return f"VALUES ?cls {{ {values} }} ?item wdt:P31 ?cls ."
+    # Sous-classes d'abord, puis instances : avec l'optimiseur désactivé
+    # (cf. build_query), cet ordre évite les dépassements de délai.
+    return f"VALUES ?root {{ {values} }} ?cls wdt:P279* ?root . ?item wdt:P31 ?cls ."
 
 
 CATEGORIES = [
