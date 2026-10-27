@@ -41,7 +41,6 @@ def build_query(source):
     return f"""
 SELECT ?item (SAMPLE(?coord) AS ?c) (MAX(?sl) AS ?sitelinks) (SAMPLE(?cc) AS ?country)
        (SAMPLE(?fr) AS ?name_fr) (SAMPLE(?en) AS ?name_en) WHERE {{
-  hint:Query hint:optimizer "None" .
   {source["where"]}
   ?item wikibase:sitelinks ?sl .
   FILTER(?sl >= {source["min_sitelinks"]})

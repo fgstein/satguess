@@ -21,9 +21,10 @@ def instance_of(*qids, subclasses=True):
     values = " ".join(f"wd:{q}" for q in qids)
     if not subclasses:
         return f"VALUES ?cls {{ {values} }} ?item wdt:P31 ?cls ."
-    # Sous-classes d'abord, puis instances : avec l'optimiseur désactivé
-    # (cf. build_query), cet ordre évite les dépassements de délai.
-    return f"VALUES ?root {{ {values} }} ?cls wdt:P279* ?root . ?item wdt:P31 ?cls ."
+    # Sous-classes d'abord, puis instances, avec l'optimiseur désactivé pour
+    # imposer cet ordre : sinon le parcours P279* dépasse le délai de 60 s.
+    return (f'hint:Query hint:optimizer "None" . '
+            f"VALUES ?root {{ {values} }} ?cls wdt:P279* ?root . ?item wdt:P31 ?cls .")
 
 
 CATEGORIES = [
