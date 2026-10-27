@@ -3,6 +3,10 @@ name: Android
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -18,7 +22,22 @@ jobs:
         run: ./gradlew testDebugUnitTest assembleDebug
         env:
           MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+      - name: Renommer l'APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk satguess.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: satguess-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: satguess-apk
+          path: satguess.apk
+      # Release « latest » remplacée à chaque push : lien de téléchargement direct et stable
+      # https://github.com/<owner>/<repo>/releases/download/latest/satguess.apk
+      - name: Publier la release latest
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest satguess.apk \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "SatGuess — dernière version" \
+            --notes "APK généré automatiquement depuis la branche \`$GITHUB_REF_NAME\` (commit ${GITHUB_SHA::7})."

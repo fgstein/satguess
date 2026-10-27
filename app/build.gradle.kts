@@ -28,6 +28,17 @@ android {
         buildConfigField("String", "MAPBOX_TOKEN", "\"$mapboxToken\"")
     }
 
+    signingConfigs {
+        // Clé de debug versionnée : tous les APK (locaux et CI) ont la même signature,
+        // ce qui permet d'installer une nouvelle version par-dessus l'ancienne.
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

@@ -1,5 +1,7 @@
 # SatGuess
 
+**Télécharger l'APK :** https://github.com/fgstein/satguess/releases/download/latest/satguess.apk (mis à jour automatiquement à chaque push).
+
 Jeu Android inspiré d'EarthGuessr : une image satellite s'affiche, placez-la sur la carte du monde. 5 manches, 5 000 points maximum par manche.
 
 - Spécifications : [`docs/SPECS.md`](docs/SPECS.md)
