@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">Où sur Terre se trouve cette image satellite ?</string>
+    <string name="loading">Chargement des lieux…</string>
+    <string name="locations_count">%1$s lieux</string>
+
+    <string name="mode_move">Move</string>
+    <string name="mode_no_move">No Move</string>
+    <string name="mode_move_desc">Déplacer et zoomer l\'image</string>
+    <string name="mode_no_move_desc">Image figée, sans zoom</string>
+
+    <string name="play">Jouer</string>
+    <string name="play_with_seed">Jouer avec une seed</string>
+    <string name="stats">Statistiques</string>
+    <string name="settings">Réglages</string>
+    <string name="back">Retour</string>
+    <string name="home">Accueil</string>
+
+    <string name="enter_seed">Saisir une seed</string>
+    <string name="seed_hint">XXXX-XXXX</string>
+    <string name="seed_invalid">Seed invalide.</string>
+    <string name="seed_wrong_version">Cette seed a été créée avec une autre version du jeu.</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">OK</string>
+
+    <string name="round_x">Manche %1$d/%2$d</string>
+    <string name="score_x">Score %1$s</string>
+    <string name="seed_x">Seed %1$s</string>
+    <string name="validate">Valider</string>
+    <string name="place_pin">Placez votre épingle sur la carte</string>
+    <string name="back_to_start">Retour au départ</string>
+    <string name="expand_map">Agrandir la carte</string>
+    <string name="collapse_map">Réduire la carte</string>
+    <string name="time_left">%1$d s</string>
+    <string name="quit_title">Quitter la partie ?</string>
+    <string name="quit_text">La progression de cette partie sera perdue.</string>
+    <string name="quit">Quitter</string>
+    <string name="keep_playing">Continuer</string>
+
+    <string name="distance_away">à %1$s</string>
+    <string name="no_guess">Pas de réponse</string>
+    <string name="points_x">%1$s points</string>
+    <string name="next_round">Manche suivante</string>
+    <string name="see_results">Voir le résultat</string>
+    <string name="it_was">C\'était…</string>
+
+    <string name="game_over">Partie terminée</string>
+    <string name="total_of">%1$s / %2$s</string>
+    <string name="new_game">Nouvelle partie</string>
+    <string name="replay_seed">Rejouer cette seed</string>
+    <string name="share">Partager</string>
+    <string name="copy_seed">Copier la seed</string>
+    <string name="seed_copied">Seed copiée</string>
+    <string name="share_text">SatGuess 🛰️ %1$s/%2$s (%3$s) — seed %4$s</string>
+
+    <string name="games_played">Parties jouées</string>
+    <string name="best_score">Meilleur score</string>
+    <string name="average_score">Score moyen</string>
+
+    <string name="timer">Chrono par manche</string>
+    <string name="timer_off">Désactivé</string>
+    <string name="timer_seconds">%1$d s</string>
+    <string name="units">Unités de distance</string>
+    <string name="units_km">Kilomètres</string>
+    <string name="units_mi">Miles</string>
+</resources>

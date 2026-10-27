@@ -11,7 +11,7 @@ Une image satellite sans aucun label (pas de noms, frontières, routes étiquet�
 - Fin de partie : récapitulatif, score total sur 25 000.
 
 ## 3. Vue satellite — deux modes, choisis au lancement
-- **Move** : pan + zoom autorisés, dans des limites (dézoom max ~50 km de large, zoom max ~200 m). Bouton « Retour au départ » qui recentre sur la vue initiale.
+- **Move** : pan + zoom autorisés, dans des limites (dézoom max ~50 km de large, zoom max ~200 m, centre de la vue à moins de 50 km du lieu). Bouton « Retour au départ » qui recentre sur la vue initiale.
 - **No Move** : image figée, ni zoom ni déplacement.
 - Dans les deux cas : aucun label.
 
@@ -27,10 +27,11 @@ Une image satellite sans aucun label (pas de noms, frontières, routes étiquet�
 
 ## 6. Écran de résultat de manche
 - Carte avec l'épingle, le vrai lieu et une ligne entre les deux.
-- Distance, points gagnés, nom du lieu (+ pays).
+- Distance, points gagnés.
+- Nom du lieu, courte phrase explicative (description Wikidata, ex. « capitale de l'État du Massachusetts ») et pays.
 
 ## 7. Écran de fin de partie
-- Carte avec les 5 paires épingle/lieu, score total, détail par manche.
+- Carte avec les 5 paires épingle/lieu, score total, détail par manche (nom du lieu, courte description, distance, points).
 - Seed de la partie affichée et copiable.
 - Meilleur score enregistré en local.
 - Boutons « Rejouer », « Partager » (ex. `SatGuess 🛰️ 18 432/25 000 — seed K7QF-29XA`), « Rejouer cette seed ».
@@ -62,7 +63,7 @@ Une image satellite sans aucun label (pas de noms, frontières, routes étiquet�
   2. **Doublons** : deux lieux à moins de 5 km → on garde le plus connu.
   3. **Diversité** : au plus 5 % des lieux dans un même pays.
   4. **Coordonnées** : on écarte les coordonnées absentes ou invalides.
-- Format d'un lieu : `id` (QID Wikidata), `lat`, `lon`, `cat`, `name_fr`, `name_en`, `country` (ISO 3166-1 alpha-2), `sitelinks`, `view_km`.
+- Format d'un lieu : `id` (QID Wikidata), `lat`, `lon`, `cat`, `name_fr`, `name_en`, `desc_fr`, `desc_en` (description courte Wikidata), `country` (ISO 3166-1 alpha-2), `sitelinks`, `view_km`.
 - Le fichier porte un numéro de **version** (entier), incrémenté à chaque régénération.
 
 ## 9. Mode de jeu
@@ -72,8 +73,8 @@ Un seul mode : la partie classique de 5 lieux tirés dans toute la liste. Pas de
 Désactivé par défaut. Option : 60 s ou 120 s par manche. À l'expiration, on valide l'épingle posée, ou 0 point s'il n'y en a pas.
 
 ## 11. Imagerie
-- Vue satellite : Mapbox Satellite (clé API) ; secours : Sentinel-2 cloudless (EOX, CC BY 4.0).
-- Carte de réponse : OpenStreetMap via MapLibre.
+- Vue satellite : Mapbox Satellite si une clé est fournie (`MAPBOX_TOKEN`), sinon Sentinel-2 cloudless 2024 (EOX, CC BY 4.0, zoom natif max 15, ~10 m/pixel).
+- Carte de réponse : OpenStreetMap via OpenFreeMap (style « liberty », sans clé), affichée avec MapLibre.
 
 ## 12. Stack technique
 - Kotlin + Jetpack Compose, minSdk 26.

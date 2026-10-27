@@ -40,7 +40,8 @@ def build_query(source):
     coord = source.get("coord", COORD_DEFAULT)
     return f"""
 SELECT ?item (SAMPLE(?coord) AS ?c) (MAX(?sl) AS ?sitelinks) (SAMPLE(?cc) AS ?country)
-       (SAMPLE(?fr) AS ?name_fr) (SAMPLE(?en) AS ?name_en) WHERE {{
+       (SAMPLE(?fr) AS ?name_fr) (SAMPLE(?en) AS ?name_en)
+       (SAMPLE(?dfr) AS ?desc_fr) (SAMPLE(?den) AS ?desc_en) WHERE {{
   {source["where"]}
   ?item wikibase:sitelinks ?sl .
   FILTER(?sl >= {source["min_sitelinks"]})
@@ -48,6 +49,8 @@ SELECT ?item (SAMPLE(?coord) AS ?c) (MAX(?sl) AS ?sitelinks) (SAMPLE(?cc) AS ?co
   OPTIONAL {{ ?item wdt:P17 ?ctry . ?ctry wdt:P297 ?cc . }}
   OPTIONAL {{ ?item rdfs:label ?fr . FILTER(LANG(?fr) = "fr") }}
   OPTIONAL {{ ?item rdfs:label ?en . FILTER(LANG(?en) = "en") }}
+  OPTIONAL {{ ?item schema:description ?dfr . FILTER(LANG(?dfr) = "fr") }}
+  OPTIONAL {{ ?item schema:description ?den . FILTER(LANG(?den) = "en") }}
 }} GROUP BY ?item
 """
 
@@ -125,6 +128,8 @@ def fetch_candidates():
                     "cat": cat["code"],
                     "name_fr": name_fr,
                     "name_en": name_en or name_fr,
+                    "desc_fr": row.get("desc_fr", {}).get("value"),
+                    "desc_en": row.get("desc_en", {}).get("value"),
                     "country": row.get("country", {}).get("value"),
                     "sitelinks": int(row["sitelinks"]["value"]),
                     "view_km": cat["view_km"],
